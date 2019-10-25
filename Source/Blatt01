@@ -1,0 +1,7 @@
+module Sum where
+
+-- | Die Funktion berechnet die Summe von positiv Zahlen 1 bis eingegebene Zahl. Negative Zahlen werden als 0 zurückgegeben
+summe :: Integer -> Integer
+summe x
+    | x <= 0 = 0
+    | otherwise = x + summe (x-1)

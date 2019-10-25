@@ -1,0 +1,32 @@
+module Uebung_2 where
+
+import Data.List
+
+-- | Folgende Funktion prüft, ob erste Parameter ein prefix von zweite Parameter ist. 
+startStrOf :: String -> String -> Bool
+startStrOf "" y = True
+startStrOf x "" = False
+startStrOf (x:xs) (y:ys) = x == y && startStrOf xs ys  
+
+-- Folgende Funtion prüft, ob erste Parameter in der zweite Parameter vorkommt. 
+subStrOf :: String -> String -> Bool
+subStrOf "" y = True
+subStrOf x "" = False
+subStrOf x y = isInfixOf x y
+
+consonant :: Char -> Bool
+consonant c =  True
+
+
+isNotVowel :: Char -> Bool
+isNotVowel c = notElem c "aeiou"
+
+
+robber :: String -> String
+robber (x:xs)
+    | length (x:xs) <=1 = ""
+    | isNotVowel x = x : 'o' : x : robber xs 
+    | otherwise = x : robber xs 
+
+unrobber :: String -> String
+unrobber = undefined

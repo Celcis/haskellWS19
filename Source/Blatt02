@@ -42,7 +42,7 @@ helper :: String -> Bool
 helper [] = True
 helper str = str == reverse str 
 
--- | 
+-- | Diese Frunktion ist eine dekodierung von robber ist. 
 unrobber :: String -> String
 unrobber "" = []
 unrobber (x:xs)

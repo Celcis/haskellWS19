@@ -8,25 +8,44 @@ startStrOf "" y = True
 startStrOf x "" = False
 startStrOf (x:xs) (y:ys) = x == y && startStrOf xs ys  
 
--- Folgende Funtion prüft, ob erste Parameter in der zweite Parameter vorkommt. 
+-- | Folgende Funtion prüft, ob erste Parameter in der zweite Parameter vorkommt. 
 subStrOf :: String -> String -> Bool
 subStrOf "" y = True
 subStrOf x "" = False
 subStrOf x y = isInfixOf x y
 
-consonant :: Char -> Bool
-consonant c =  True
-
-
+-- | Prüft, ob eingegebene char eine konsonant ist
 isNotVowel :: Char -> Bool
 isNotVowel c = notElem c "aeiou"
 
-
+-- | Jede Konsonant wird verdoppelt und zwischen ein 'o' eingefügt.
 robber :: String -> String
 robber (x:xs)
     | length (x:xs) <=1 = ""
     | isNotVowel x = x : 'o' : x : robber xs 
     | otherwise = x : robber xs 
 
+
+
+-- | Prüft, ob eingegebene char eine consonant ist
+consonant :: Char -> Bool
+consonant c = notElem c "aeiou"
+
+-- | Prüft, ob char eine vokal ist
+isVowel:: Char -> Bool
+isVowel c
+    |elem c "aeiou" = True
+    | otherwise = False
+    
+-- | prüft, ob eingegeben String palindrome ist 
+helper :: String -> Bool
+helper [] = True
+helper str = str == reverse str 
+
+-- | 
 unrobber :: String -> String
-unrobber = undefined
+unrobber "" = []
+unrobber (x:xs)
+    | length (x:xs) <= 1 = (x:xs)
+    | consonant x && helper ( fst (splitAt 3 (x:xs))) = x : unrobber (drop 3 (x:xs))
+    | otherwise = x : unrobber xs

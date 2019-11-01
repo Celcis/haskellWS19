@@ -39,12 +39,16 @@ isVowel c
     |elem c "aeiou" = True
     | True = False
     
+    
+helper :: String -> Bool
+helper [] = True
+helper str = str == reverse str 
 
  
 -- | Diese Frunktion ist eine dekodierung von robber ist. 
 unrobber :: String -> String
-unrobber [] = []
-unrobber str  
-    | (head str) == ' ' = " " ++ unrobber (drop 1 str)
-    | consonant (head str) = [head str] ++ unrobber (drop 3 str)
-    | True = [head str] ++ unrobber (drop 1 str)
+unrobber "" = []
+unrobber (x:xs)
+    | length (x:xs) <= 1 = (x:xs)
+    | consonant x && helper ( fst (splitAt 3 (x:xs))) = x : unrobber (drop 3 (x:xs))
+    | otherwise = x : unrobber xs 

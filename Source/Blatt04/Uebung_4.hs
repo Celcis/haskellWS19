@@ -19,8 +19,6 @@ weights = [0.75, 0.25]
 
 names = ["Daniel", "Mahmoud", "Marcel", "Fawad"]
 
---(*) = (*) `on` fromIntegral
-
 
 averageGrade :: [Float] -> [Int] -> Float
 averageGrade a b = sum $ zipWith (*) a $ map fromIntegral(b)
@@ -28,10 +26,12 @@ averageGrade a b = sum $ zipWith (*) a $ map fromIntegral(b)
 
 
 studentperformance :: [String] -> [[Int]] -> [Float] -> [(String, Float)]
-studentperformance  = undefined
+studentperformance n g w = zip n $ map (\x-> averageGrade w x) g  
+
 
 overallGrades :: [(String, Float)] -> [Float]
-overallGrades = undefined
+overallGrades t = map snd t 
+
 
 overallAverage :: [(String, Float)] -> Float
 overallAverage = undefined

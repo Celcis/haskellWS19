@@ -18,7 +18,7 @@ weights = [0.75, 0.25]
 names = ["Daniel", "Mahmoud", "Marcel", "Fawad"]
 
 averageGrade :: [Float] -> [Int] -> Float
-averageGrade a b = sum $ zipWith (*) 
+averageGrade a b = sum $ zipWith (*) a b
 
 
 

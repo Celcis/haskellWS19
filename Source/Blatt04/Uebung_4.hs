@@ -3,7 +3,7 @@ import Data.List
 
 -- 4.1
 concat' :: [[a]] -> [a]
-concat' = undefined
+concat' = foldl (++) []
 
 filter' :: (a -> Bool) -> [a] -> [a]
 filter' p = foldr (\x c -> if p x then x : c else c) []
@@ -17,8 +17,8 @@ weights = [0.75, 0.25]
 
 names = ["Daniel", "Mahmoud", "Marcel", "Fawad"]
 
-averageGrade :: [Float] -> [Int] -> [a,b]
-averageGrade a b =  zip a b
+averageGrade :: [Float] -> [Int] -> Float
+averageGrade a b = sum $ zipWith (*) 
 
 
 

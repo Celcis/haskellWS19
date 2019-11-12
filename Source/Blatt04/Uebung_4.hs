@@ -1,13 +1,12 @@
-
 module Uebung_4 where
-import Data.List 
+import Data.List
 
 -- 4.1
 concat' :: [[a]] -> [a]
-concat'  = foldl (++) []
+concat' = undefined
 
 filter' :: (a -> Bool) -> [a] -> [a]
-filter' = undefined
+filter' p = foldr (\x c -> if p x then x : c else c) []
 
 -- 4.2
 grades :: [[Int]]
@@ -18,8 +17,10 @@ weights = [0.75, 0.25]
 
 names = ["Daniel", "Mahmoud", "Marcel", "Fawad"]
 
-averageGrade :: [Float] -> [Int] -> Float
-averageGrade = undefined
+averageGrade :: [Float] -> [Int] -> [a,b]
+averageGrade a b =  zip a b
+
+
 
 studentperformance :: [String] -> [[Int]] -> [Float] -> [(String, Float)]
 studentperformance = undefined

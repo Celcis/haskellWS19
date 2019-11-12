@@ -1,5 +1,6 @@
 module Uebung_4 where
 import Data.List
+import Data.Function
 
 -- 4.1
 concat' :: [[a]] -> [a]
@@ -9,6 +10,7 @@ filter' :: (a -> Bool) -> [a] -> [a]
 filter' p = foldr (\x c -> if p x then x : c else c) []
 
 -- 4.2
+
 grades :: [[Int]]
 grades = [[6, 4], [1, 3], [5, 2], [3, 1]]
 
@@ -17,13 +19,16 @@ weights = [0.75, 0.25]
 
 names = ["Daniel", "Mahmoud", "Marcel", "Fawad"]
 
+--(*) = (*) `on` fromIntegral
+
+
 averageGrade :: [Float] -> [Int] -> Float
-averageGrade a b = sum $ zipWith (*) a b
+averageGrade a b = sum $ zipWith (*) a $ map fromIntegral(b)
 
 
 
 studentperformance :: [String] -> [[Int]] -> [Float] -> [(String, Float)]
-studentperformance = undefined
+studentperformance  = undefined
 
 overallGrades :: [(String, Float)] -> [Float]
 overallGrades = undefined

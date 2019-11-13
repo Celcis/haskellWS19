@@ -34,7 +34,8 @@ overallGrades t = map snd t
 
 
 overallAverage :: [(String, Float)] -> Float
-overallAverage = undefined
+overallAverage k = (sum $ map snd k) / fromIntegral(length k)
+
 
 bestStudents :: [(String, Float)] -> [(String, Float)]
 bestStudents = undefined

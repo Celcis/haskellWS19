@@ -42,7 +42,7 @@ overallAverage k = (sum $ map snd k) / fromIntegral(length k)
 
 
 bestStudents :: [(String, Float)] -> [(String, Float)]
-bestStudents =sortBy (compare `on` snd)
+bestStudents x = [head $ sortBy (compare `on` snd) x]
 
 
 getPartialList :: ((String, Float) -> Bool) -> [(String, Float)] -> [(String, Float)]

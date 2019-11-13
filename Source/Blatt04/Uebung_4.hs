@@ -1,6 +1,10 @@
 module Uebung_4 where
 import Data.List
 import Data.Function
+import Data.List
+import Data.Ord (comparing)
+import Data.List (sortOn,sortBy)
+
 
 -- 4.1
 concat' :: [[a]] -> [a]
@@ -38,7 +42,8 @@ overallAverage k = (sum $ map snd k) / fromIntegral(length k)
 
 
 bestStudents :: [(String, Float)] -> [(String, Float)]
-bestStudents = undefined
+bestStudents =sortBy (compare `on` snd)
+
 
 getPartialList :: ((String, Float) -> Bool) -> [(String, Float)] -> [(String, Float)]
 getPartialList = undefined

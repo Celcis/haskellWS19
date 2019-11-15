@@ -1,9 +1,8 @@
 module Uebung_4 where
 import Data.List
 import Data.Function
-import Data.List
 import Data.Ord (comparing)
-import Data.List (sortOn,sortBy)
+
 
 
 -- 4.1
@@ -49,13 +48,14 @@ getPartialList :: ((String, Float) -> Bool) -> [(String, Float)] -> [(String, Fl
 getPartialList = undefined
 
 successRate :: [(String, Float)] -> Float
-successRate = undefined
+successRate k = fromIntegral(length $  map (\x -> hasPassed x) k) / fromIntegral(length k)
+
 
 hasPassed :: (String, Float) -> Bool
 hasPassed (_, avg) = avg <= 4
 
 whichPassed :: [(String, Float)]
-whichPassed = undefined
+whichPassed = (filter(\(f,z) -> hasPassed (f,z))) (studentperformance names grades weights)
 
 whichAreAboveOverallAverage :: [(String, Float)]
 whichAreAboveOverallAverage = undefined

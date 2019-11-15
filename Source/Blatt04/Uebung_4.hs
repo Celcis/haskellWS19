@@ -48,7 +48,8 @@ getPartialList :: ((String, Float) -> Bool) -> [(String, Float)] -> [(String, Fl
 getPartialList = undefined
 
 successRate :: [(String, Float)] -> Float
-successRate k = fromIntegral(length $  map (\x -> hasPassed x) k) / fromIntegral(length k)
+successRate k = successRate k = fromIntegral(length (filter (\x -> hasPassed x) k)) / fromIntegral(length k)
+
 
 
 hasPassed :: (String, Float) -> Bool

@@ -50,16 +50,14 @@ getPartialList = undefined
 successRate :: [(String, Float)] -> Float
 successRate k = fromIntegral(length (filter (\x -> hasPassed x) k)) / fromIntegral(length k)
 
-
-
 hasPassed :: (String, Float) -> Bool
 hasPassed (_, avg) = avg <= 4
 
 whichPassed :: [(String, Float)]
-whichPassed = (filter(\(f,z) -> hasPassed (f,z))) (studentperformance names grades weights)
+whichPassed = filter(\x -> hasPassed x) (studentperformance names grades weights)
 
 whichAreAboveOverallAverage :: [(String, Float)]
 whichAreAboveOverallAverage = undefined
 
 allPassed :: [(String, Float)] -> Bool
-allPassed = undefined
+allPassed k = length (filter (\x -> hasPassed x) k) == length k

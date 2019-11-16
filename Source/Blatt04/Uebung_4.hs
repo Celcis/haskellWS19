@@ -45,7 +45,7 @@ bestStudents x = [head $ sortBy (compare `on` snd) x]
 
 
 getPartialList :: ((String, Float) -> Bool) -> [(String, Float)] -> [(String, Float)]
-getPartialList = undefined
+getPartialList x y = filter(\a -> x a) y
 
 successRate :: [(String, Float)] -> Float
 successRate k = fromIntegral(length (filter (\x -> hasPassed x) k)) / fromIntegral(length k)
@@ -57,7 +57,7 @@ whichPassed :: [(String, Float)]
 whichPassed = filter(\x -> hasPassed x) (studentperformance names grades weights)
 
 whichAreAboveOverallAverage :: [(String, Float)]
-whichAreAboveOverallAverage = undefined
+whichAreAboveOverallAverage =
 
 allPassed :: [(String, Float)] -> Bool
 allPassed k = length (filter (\x -> hasPassed x) k) == length k

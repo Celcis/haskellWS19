@@ -12,7 +12,8 @@ isEmpty Empty = True
 isEmpty _ = False
 -- | Ob der eingegebene Knoten ein Blatt ist.
 isLeaf :: Tree a -> Bool
-isLeaf = undefined
+isLeaf (Leaf a) = True
+isLeaf _ = False
 
 -- | ob der eingegebene Knoten Kinder hat
 isNode :: Tree a -> Bool

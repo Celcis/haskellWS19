@@ -2,6 +2,7 @@ module Uebung05 where
 import Prelude hiding (min,max)
 import qualified Data.Tree as T hiding (Tree)
 
+
 -- | Definieren des Baums
 data Tree a = Node a (Tree a) (Tree a) | Leaf a | Empty 
               deriving (Ord, Eq, Show)
@@ -10,6 +11,7 @@ data Tree a = Node a (Tree a) (Tree a) | Leaf a | Empty
 isEmpty :: Tree a -> Bool
 isEmpty Empty = True
 isEmpty _ = False
+
 -- | Ob der eingegebene Knoten ein Blatt ist.
 isLeaf :: Tree a -> Bool
 isLeaf (Leaf a) = True
@@ -17,31 +19,46 @@ isLeaf _ = False
 
 -- | ob der eingegebene Knoten Kinder hat
 isNode :: Tree a -> Bool
-isNode = undefined
+isNode Empty = False
+isNode (Leaf a) = False
+isNode _ = True
 
+-- =========================================================================
 -- | Mache alle Knoten im Baum, die wie __/Node element Empty Empty/__ aussehen, so: __/Leaf element/__
 makeUnhollow :: Tree a -> Tree a
 makeUnhollow = undefined
 
 -- | gibt das linke Kind
 leftChild :: Tree a -> Maybe(Tree a)
-leftChild = undefined
+leftChild Empty = Nothing
+leftChild (Node a left Empty ) = Just left
+leftChild (Node a left right) = leftChild left
+
 
 -- | gibt das rechte Kind
 rightChild :: Tree a -> Maybe(Tree a)
-rightChild = undefined
+rightChild Empty = Nothing
+rightChild (Node a Empty right ) = Just right
+rightChild (Node a left right) = rightChild right
 
 -- | Anzahl der Knoten und Blätter
 nodeCount :: Tree a -> Int
-nodeCount = undefined
+nodeCount Empty = 0
+nodeCount (Leaf a) = 1
+nodeCount (Node a left right) = nodeCount left + nodeCount right + 1
 
 -- | Finde den kleinsten Index
 min :: Tree a -> Maybe a
-min = undefined
+min Empty = Nothing
+min (Node a Empty right ) = Just a
+min (Node _ left _ ) = min left
 
 -- | gibt den größten Index im Baum
 max :: (Eq a, Ord a) => Tree a -> Maybe a
-max = undefined
+max Empty = Nothing 
+max (Node a left right )
+    | left > right = max left 
+    | otherwise = max right
 
 -- | Einfügen Elemente in die Liste
 insert :: (Ord a) => Tree a -> a -> Tree a

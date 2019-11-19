@@ -31,15 +31,15 @@ makeUnhollow = undefined
 -- | gibt das linke Kind
 leftChild :: Tree a -> Maybe(Tree a)
 leftChild Empty = Nothing
-leftChild (Node a left Empty ) = Just left
-leftChild (Node a left right) = leftChild left
+leftChild (Leaf a) = Nothing
+leftChild (Node _ l _ ) = leftChild l 
 
 
 -- | gibt das rechte Kind
 rightChild :: Tree a -> Maybe(Tree a)
 rightChild Empty = Nothing
-rightChild (Node a Empty right ) = Just right
-rightChild (Node a left right) = rightChild right
+rightChild (Leaf a) = Nothing
+rightChild (Node _ _ r) = Just r
 
 -- | Anzahl der Knoten und Blätter
 nodeCount :: Tree a -> Int
@@ -50,19 +50,25 @@ nodeCount (Node a left right) = nodeCount left + nodeCount right + 1
 -- | Finde den kleinsten Index
 min :: Tree a -> Maybe a
 min Empty = Nothing
+min (Leaf a) = Just a
 min (Node a Empty right ) = Just a
 min (Node _ left _ ) = min left
 
 -- | gibt den größten Index im Baum
 max :: (Eq a, Ord a) => Tree a -> Maybe a
 max Empty = Nothing 
+max (Leaf a) = Just a
 max (Node a left right )
     | left > right = max left 
     | otherwise = max right
 
 -- | Einfügen Elemente in die Liste
 insert :: (Ord a) => Tree a -> a -> Tree a
-insert = undefined
+insert Leaf d = Node Leaf d Leaf
+insert d (Node rTree x lTree)
+  | d < x  = Node (insert d rTree) x lTree
+  | d >= x = Node rTree x (insert d lTree)  
+
 
 -- | Ob alle Knoten im Baum das eingegebene Kriterium bestimmt
 fulfillTree :: (a -> Bool) -> Tree a -> Bool

@@ -9,7 +9,7 @@ Mitglieder:
 * Mehmet Ali Baykara (baykara)
 
 ### Abgaben und Noten
-1. [X] Blatt 01 Datum **25.10.2019** => Note **5 / 5 **
+1. [X] Blatt 01 Datum **25.10.2019** => Note 5 / 5 
 2. [X] Blatt 02 Datum **1.11.2019** => Note **8 / 10 **
 3. [X] Blatt 03 Datum **7.11.2019** => Note **6.5 / 10 **
 4. [X] Blatt 04 Datum **14.11.2019** => Note **10 / 10 **

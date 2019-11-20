@@ -1,7 +1,7 @@
 module Uebung05 where
 import Prelude hiding (min,max)
 import qualified Data.Tree as T hiding (Tree)
-
+import Data.List
 
 -- | Definieren des Baums
 data Tree a = Node a (Tree a) (Tree a) | Leaf a | Empty 

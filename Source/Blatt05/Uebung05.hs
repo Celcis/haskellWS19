@@ -1,7 +1,7 @@
 module Uebung05 where
 import Prelude hiding (min,max)
 import qualified Data.Tree as T hiding (Tree)
-import Data.List
+
 
 -- | Definieren des Baums
 data Tree a = Node a (Tree a) (Tree a) | Leaf a | Empty 
@@ -62,13 +62,19 @@ max (Node a left right )
     | left > right = max left 
     | otherwise = max right
 
+-- eine helperfunktion fur insert
+whenTreeEmpty:: a -> Tree a 
+whenTreeEmpty n = Leaf n
+
+
 -- | Einfügen Elemente in die Liste
 insert :: (Ord a) => Tree a -> a -> Tree a
-insert Leaf d = Node Leaf d Leaf
-insert d (Node rTree x lTree)
-  | d < x  = Node (insert d rTree) x lTree
-  | d >= x = Node rTree x (insert d lTree)  
-
+insert Empty n = whenTreeEmpty n
+insert (Leaf a) n = Node a Empty (Leaf n) 
+insert (Node a left right) n
+    | n == a = Node a left right
+    | n < a  = Node a (insert left n) right
+    | n > a  = Node a left (insert right n)
 
 -- | Ob alle Knoten im Baum das eingegebene Kriterium bestimmt
 fulfillTree :: (a -> Bool) -> Tree a -> Bool
@@ -85,6 +91,7 @@ countElem = undefined
 -- | Ob der Baum Duplikate hat.
 hasDuplicates :: (Eq a) => Tree a -> Bool
 hasDuplicates = undefined
+-- ==============================================================================================
 
 -- | Hilfsmethode für die main-Methode zum Ascii-Zeichnen des Baums.
 --   Wandelt der oben definierte Baum in den in 'Data.Tree' definierten Baum um

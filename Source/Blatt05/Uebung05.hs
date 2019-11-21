@@ -3,6 +3,7 @@ import Prelude hiding (min,max)
 import qualified Data.Tree as T hiding (Tree)
 
 
+
 -- | Definieren des Baums
 data Tree a = Node a (Tree a) (Tree a) | Leaf a | Empty 
               deriving (Ord, Eq, Show)
@@ -26,7 +27,9 @@ isNode _ = True
 -- =========================================================================
 -- | Mache alle Knoten im Baum, die wie __/Node element Empty Empty/__ aussehen, so: __/Leaf element/__
 makeUnhollow :: Tree a -> Tree a
-makeUnhollow = undefined
+makeUnhollow Empty = Empty
+makeUnhollow (Node a Empty Empty ) = Leaf a 
+
 
 -- | gibt das linke Kind
 leftChild :: Tree a -> Maybe(Tree a)
@@ -58,9 +61,8 @@ min (Node _ left _ ) = min left
 max :: (Eq a, Ord a) => Tree a -> Maybe a
 max Empty = Nothing 
 max (Leaf a) = Just a
-max (Node a left right )
-    | left > right = max left 
-    | otherwise = max right
+max (Node x _ Empty )= Just x
+max (Node x _ r) = max r
 
 -- eine helperfunktion fur insert
 whenTreeEmpty:: a -> Tree a 
@@ -72,13 +74,24 @@ insert :: (Ord a) => Tree a -> a -> Tree a
 insert Empty n = whenTreeEmpty n
 insert (Leaf a) n = Node a Empty (Leaf n) 
 insert (Node a left right) n
-    | n == a = Node a left right
-    | n < a  = Node a (insert left n) right
+    | n == a = Node n left right
+    | n < a  = Node a (Leaf n) right
     | n > a  = Node a left (insert right n)
+
+
+-- | helperfunktion, die ein Baum als Liste darstellt 
+toList :: (Ord a) => Tree a -> [a]
+toList Empty = []
+toList (Node v t1  t2) = toList t1 ++ [v] ++ toList t2
+
 
 -- | Ob alle Knoten im Baum das eingegebene Kriterium bestimmt
 fulfillTree :: (a -> Bool) -> Tree a -> Bool
-fulfillTree = undefined
+fulfillTree f Empty = True
+fulfillTree f (Leaf a) = f a
+fulfillTree f (Node a left right) =  f a && fulfillTree f left && fulfillTree f right 
+    
+
 
 -- | Gibt alle Elemente des Baums, die das eingegebene Kriterium bestimmen
 filterTreeToList :: (a -> Bool) -> Tree a -> [a]
@@ -88,9 +101,14 @@ filterTreeToList = undefined
 countElem :: (Eq a) => Tree a -> a -> Int
 countElem = undefined
 
+
+
+
 -- | Ob der Baum Duplikate hat.
 hasDuplicates :: (Eq a) => Tree a -> Bool
 hasDuplicates = undefined
+    
+
 -- ==============================================================================================
 
 -- | Hilfsmethode für die main-Methode zum Ascii-Zeichnen des Baums.
@@ -109,3 +127,4 @@ printableTree (Node v node1 node2) = Node (show $ fromInteger v) (printableTree 
 --   Gib am Ende der Implementierung der main-Methode den zu zeichnenden Baum
 printTree :: Tree Integer -> IO()
 printTree tree = putStrLn $ T.drawTree $ toDataTree $ printableTree tree
+

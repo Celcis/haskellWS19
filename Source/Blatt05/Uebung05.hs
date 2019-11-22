@@ -99,16 +99,34 @@ filterTreeToList = undefined
 
 -- | Gibt die Anzahl der Knoten mit dem angegebenen Schluessel
 countElem :: (Eq a) => Tree a -> a -> Int
-countElem = undefined
+countElem Empty _ = 0
+countElem (Leaf a) n = if a == n then 1 else 0
+countElem (Node a left right ) n
+    | a == n = 1
+    | True = countElem right n + countElem left n
 
 
+
+-- | helperfunktion, die ein Baum als Liste darstellt 
+toList :: Tree a -> [a]
+toList Empty = []
+toList (Leaf a) = [a]
+toList (Node a t1  t2) = toList t1 ++ [a] ++ toList t2
+
+-- | diese Funktion loescht dublicate Elemente aus der List
+dropNub :: (Eq a) => [a] -> [a]
+dropNub [] = []
+dropNub (x:xs) = x : dropNub (filter (/=x) xs)
 
 
 -- | Ob der Baum Duplikate hat.
-hasDuplicates :: (Eq a) => Tree a -> Bool
-hasDuplicates = undefined
-    
-
+hasDuplicates :: ( Eq a) => Tree a -> Bool
+hasDuplicates Empty = False
+hasDuplicates (Leaf a) = False
+hasDuplicates baum
+    | (length $ dropNub $ toList (baum)) == (length $ toList (baum)) = False
+    | True = True
+   
 -- ==============================================================================================
 
 -- | Hilfsmethode für die main-Methode zum Ascii-Zeichnen des Baums.

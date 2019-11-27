@@ -13,7 +13,6 @@ Mitglieder:
 2. [X] Blatt 02 Datum **1.11.2019** => Note **8 / 10 **
 3. [X] Blatt 03 Datum **7.11.2019** => Note **6.5 / 10 **
 4. [X] Blatt 04 Datum **14.11.2019** => Note **10 / 10 **
-5. [X] Blatt 05 Datum **22.11.2019** => Note **? / 10**
-6. [X] Blatt 06 Datum **28.11.2019** => Note **? /10 **
+5. [X] Blatt 05 Datum **22.11.2019** => Note ** 8/10**
 7. [X] Blatt 06 Datum **28.11.2019** => Note **? /10 **
 

@@ -57,3 +57,35 @@ nodeInTour :: Eq a => a -> Tour a -> Bool
 nodeInTour s (Tour [x,y] n ntz)
     | (Tour [x,y] n ntz) == (Tour [s] n ntz) =  True
     | otherwise = False
+    
+-- |6.
+tour2PathWithCosts :: Tour a -> PathWithCosts a
+tour2PathWithCosts (Tour [x,y] n ntz) = ([x,y], n)
+
+-- |7.
+dId :: CityNet a -> a
+dId (District x y) = x
+
+-- |8.
+dConn :: CityNet a -> [(CityNet a, Weight)]
+dConn (District _ [(a,b)]) = [(a,b)]
+
+-- |9.
+findAllPathsWithCosts :: Eq a => a -> CityNet a -> [PathWithCosts a]
+findAllPathsWithCosts n c  = undefined
+
+-- |10.
+minimalCosts :: [PathWithCosts a] -> Weight
+minimalCosts p =  minimum (snd (unzip p))
+
+-- | 11.
+selectCheapestPaths :: [PathWithCosts a] -> [PathWithCosts a]
+selectCheapestPaths = undefined
+
+-- |12.
+subSetOfList :: Eq a => [a] -> [a] -> Bool
+subSetOfList = undefined
+
+-- |13.
+findAllPathsWithCostsVia :: Eq a => a -> [a] -> CityNet a -> [PathWithCosts a]
+findAllPathsWithCostsVia = undefined

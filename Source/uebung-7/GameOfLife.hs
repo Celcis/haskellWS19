@@ -7,24 +7,35 @@ module GameOfLife where
 -- W steht fuer wall (ein Wandelemen). 
 -- Wandelemente wurden hinzugefuegt, um laestige Randfaelle 
 -- zu vermeiden. Ein Wandelement verhaelt sich zum Zustandsuebergang neutral.
+
 data Cell = D | A | W
             deriving Eq
 
 instance Show Cell where
-  show dead = "_"
+  show c 
+    |c == D = "D"
+    |c == A = "A"
+    |c == W = "W"
 
 
 newtype Grid = Grid { grid :: [[Cell]] }
 
 
 instance Show Grid where
-  show = undefined
+  show (Grid a) = unlines $ map show a
+
+
 
 
 -- Die Regeln, nach denen der neue Zustand einer Zelle berechnet wird  
 rules :: Cell -> [Cell] -> Cell
-rules = undefined
-
+rules A ls 
+    | count A ls < 2 = D
+    | count A ls > 3 = D
+    | True             = A 
+rules D ls
+    | count D ls == 3 = A
+    | True = D
 
 -- Repraesentiert eine Umgebung (engl. neighbourhood),
 -- in der neun Zellen vorhanden sind. Dieser Datentyp
@@ -82,9 +93,15 @@ nextGrid = Grid . wrapWallsAround
 -- wobei es fuer alle drei aufeianderfolgenden Listenelemente 
 -- ein Tupel gibt:
 -- [1..5] ~~> [(1,2,3),(2,3,4),(3,4,5)]
-threeLines :: [a] -> [(a,a,a)] 
-threeLines l = undefined
+threeLines :: [a] -> [(a,a,a)]
+threeLines [] = [] 
+threeLines l
+    | length l < 3 = []
+    |True = tuplify3  (take 3 l) ++ threeLines (drop 1 l)
 
+-- Helper fuer threeLines
+tuplify3 :: [a] -> [(a,a,a)]
+tuplify3 [x,y,z] = [(x,y,z)]
 
 -- Bildet drei Listen auf eine Liste von Neuner-Tupeln ab.
 -- Dabei sind die ersten drei Elemente eines Tupels drei 

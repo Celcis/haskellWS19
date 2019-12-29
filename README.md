@@ -17,3 +17,6 @@ Mitglieder:
 6. [X] Blatt 06 Datum **28.11.2019** => Note 7.5 /10 **
 7. [X] Blatt 07 Datum **28.11.2019** => Note 10 /10 **
 
+1. NGINX reads the request and sends the request to let's say http://localhost:8080/manager
+2. The other server answers the request.
+3. NGINX resends the answer to the client.

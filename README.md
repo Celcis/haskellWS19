@@ -13,3 +13,6 @@
 5. [X] Blatt 05 Datum **22.11.2019** => Note ** 8/10**
 6. [X] Blatt 06 Datum **28.11.2019** => Note 7.5 /10 **
 7. [X] Blatt 07 Datum **28.11.2019** => Note 10 /10 **
+8. [X] Blatt 08 Datum **09.01.2020** => Note 20/20 **
+9. [X] Blatt 09 Datum **18.01.2020** => Note 20/20 **
+10. [X] Blatt 10 Datum **31.01.2020** => Note **/20 **
